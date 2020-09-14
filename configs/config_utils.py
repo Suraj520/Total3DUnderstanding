@@ -8,6 +8,7 @@ import logging
 from datetime import datetime
 from configs.data_config import Config as Data_Config
 from net_utils.libs import to_dict_tensor
+import random
 
 def update_recursive(dict1, dict2):
     ''' Update two config dictionaries recursively.
@@ -60,7 +61,8 @@ class CONFIG(object):
 
     def load_logger(self):
         # set file handler
-        save_path = os.path.join(self.config['log']['path'], datetime.now().isoformat())
+        save_path = os.path.join(self.config['log']['path'], str(random.randint(1,1000)))
+        print(save_path)
         if not os.path.exists(save_path):
             os.makedirs(save_path)
 
